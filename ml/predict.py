@@ -18,10 +18,11 @@ def preprocess_text(text):
     tokens = [word for word in text.split() if word not in stop_words]
     return " ".join(tokens)
 
-# Load model
+# Load model, vectorizer, and label encoder
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-tfidf = joblib.load(os.path.join(BASE_DIR, "tfidf_vectorizer.pkl"))
-svm_model = joblib.load(os.path.join(BASE_DIR, "svm_model.pkl"))
+tfidf = joblib.load(os.path.join(BASE_DIR, "tfidf_vectorizerLatest.pkl"))
+svm_model = joblib.load(os.path.join(BASE_DIR, "svm_modelLatest.pkl"))
+label_encoder = joblib.load(os.path.join(BASE_DIR, "label_encoder.pkl"))
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -32,14 +33,12 @@ if __name__ == "__main__":
     clean_text = preprocess_text(input_text)
     X = tfidf.transform([clean_text])
 
-    prediction = int(svm_model.predict(X)[0])  # Ensure integer
-
-    label_map = {
-        0: "Fake",
-        1: "Precaution",
-        2: "Real",
-        3: "Unclear"
-    }
+    try:
+        y_pred = svm_model.predict(X)
+        # Convert numeric label back to string using label encoder
+        pred_label = label_encoder.inverse_transform(y_pred)[0]
+    except Exception as e:
+        pred_label = "Prediction failed"
 
     # Print only **one line** for Laravel
-    print(label_map.get(prediction, "Unclear"))
+    print(pred_label)
