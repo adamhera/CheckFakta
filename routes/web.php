@@ -7,6 +7,8 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicNewsController;
 
+use App\Http\Controllers\PredictController;
+
 // --------------------------------------
 // HOMEPAGE (Landing page)
 // --------------------------------------
@@ -41,4 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// --------------------------------------
+// SEMANTIC SIMILARITY PREDICTION
+// --------------------------------------
+Route::post('/predict', [PredictController::class, 'predict'])->name('predict');
 require __DIR__.'/auth.php';

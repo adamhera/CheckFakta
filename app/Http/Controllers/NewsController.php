@@ -42,8 +42,20 @@ public function store(Request $request)
     // -----------------------------
     // Clean output
     // -----------------------------
-    $result = trim($output); // Expecting "Fake", "Real", "Precaution", or "Unclear"
+   // $result = trim($output); // Expecting "Fake", "Real", "Precaution", or "Unclear"
 
+   // Try decoding JSON output from Python (new version)
+    $json = json_decode(utf8_encode($output), true);
+
+    // If valid JSON, extract svm_result & similarities
+    if (isset($json['svm_result'])) {
+        $result = $json['svm_result'];
+        $similarities = $json['semantic_similarity'] ?? [];
+    } else {
+        // Fallback for older text-only output
+        $result = trim($output);
+        $similarities = [];
+    }
     // -----------------------------
     // Save to database
     // -----------------------------
@@ -55,7 +67,12 @@ public function store(Request $request)
     $history->save();
 
     // Redirect to result page
-    return redirect()->route('news.show', $history->history_id);
+   // return redirect()->route('news.show', $history->history_id);
+   return view('result', [
+    'history' => $history,
+    'similarities' => $similarities ?? []
+]);
+
 }
 
 

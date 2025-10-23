@@ -29,6 +29,33 @@
             </p>
         </div>
 
+        {{-- 🧠 New Semantic Similarity Section --}}
+        @if(!empty($similarities))
+            <div class="mt-8 bg-gray-50 shadow-sm rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">🔍 Most Similar Verified Facts</h3>
+                <ul class="space-y-3">
+                    @foreach($similarities as $item)
+                        <li class="border-b pb-3">
+                            <p class="font-medium text-gray-800">
+                                {{ ucfirst($item['fact_title']) }}
+                            </p>
+                            <p class="text-sm text-gray-600">
+                                Label: 
+                                @if(strtolower($item['fact_label']) === 'real')
+                                    <span class="text-green-600 font-semibold">Real ✅</span>
+                                @elseif(strtolower($item['fact_label']) === 'fake')
+                                    <span class="text-red-600 font-semibold">Fake ❌</span>
+                                @else
+                                    <span class="text-gray-600 font-semibold">{{ $item['fact_label'] }}</span>
+                                @endif
+                                | Similarity: {{ number_format($item['similarity'], 2) }}
+                            </p>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="mt-6">
             <a href="{{ route('news.create') }}" 
                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
