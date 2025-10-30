@@ -51,10 +51,12 @@ public function store(Request $request)
     if (isset($json['svm_result'])) {
         $result = $json['svm_result'];
         $similarities = $json['semantic_similarity'] ?? [];
+        $svm_confidence = $json['svm_confidence'] ?? null;
     } else {
         // Fallback for older text-only output
         $result = trim($output);
         $similarities = [];
+        $svm_confidence = null;
     }
     // -----------------------------
     // Save to database
@@ -63,6 +65,7 @@ public function store(Request $request)
     $history->user_id = Auth::id();
     $history->news_text = $newsText;
     $history->result = $result;
+    $history->svm_confidence = $svm_confidence;
     $history->detected_at = now();
     $history->save();
 

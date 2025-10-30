@@ -21,6 +21,12 @@
                 @else
                     <span class="text-gray-600 font-bold text-lg">{{ $history->result }}</span>
                 @endif
+
+                @if(isset($history->svm_confidence))
+                    <span class="ml-2 text-gray-600 text-sm">
+                        (Confidence: {{ number_format($history->svm_confidence * 100, 2) }}%)
+                    </span>
+                @endif
             </p>
 
             <p>
@@ -50,6 +56,15 @@
                                 @endif
                                 | Similarity: {{ number_format($item['similarity'], 2) }}
                             </p>
+
+                            {{-- ✅ Add this section --}}
+                            @php
+                                $link = $item['fact_link'] ?? 'https://sebenarnya.my';
+                            @endphp
+                            <a href="{{ $link }}" target="_blank"
+                               class="inline-block mt-2 text-blue-600 hover:underline font-medium">
+                               🔗 Read Source
+                            </a>
                         </li>
                     @endforeach
                 </ul>

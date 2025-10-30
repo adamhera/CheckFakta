@@ -1,74 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <title>CheckFakta</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex flex-col min-h-screen">
+<body class="bg-[#FDFDFC] text-[#1b1b18] flex flex-col min-h-screen">
 
-    <!-- Header (from Breeze) -->
-    <header class="w-full lg:max-w-5xl mx-auto text-sm mb-6 mt-4 px-4">
-        @if (Route::has('login'))
-            <nav class="flex items-center justify-end gap-4">
-                @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="inline-block px-5 py-1.5 border border-[#19140035] dark:border-[#3E3E3A] rounded-sm hover:border-[#1915014a] text-sm">
-                        Dashboard
-                    </a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 border border-transparent hover:border-[#19140035] rounded-sm text-sm">
-                        Log in
-                    </a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="inline-block px-5 py-1.5 border border-[#19140035] dark:border-[#3E3E3A] rounded-sm hover:border-[#1915014a] text-sm">
-                            Register
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <header class="w-full bg-white shadow">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+            <!-- Logo sebagai button -->
+            <a href="{{ url('/') }}" class="text-2xl font-bold text-orange-600 hover:text-orange-700 transition px-3 py-2 rounded-lg border border-orange-600 hover:bg-orange-50">
+                CheckFakta
+            </a>
+
+            <nav class="flex items-center gap-4">
+                <a href="#" class="px-4 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition">
+                    Utama
+                </a>
+                <a href="{{ route('about') }}" class="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-orange-50 transition">
+                    Tentang Kami
+                </a>
+                <a href="{{ route('rating') }}" class="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-orange-50 transition">
+                    Penarafan
+                </a>
+                <a href="{{ route('contact') }}" class="px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-orange-50 transition">
+                    Hubungi Kami
+                </a>
+
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="px-4 py-2 rounded-lg font-medium border border-orange-600 text-orange-600 hover:bg-orange-50 transition">
+                            Dashboard
                         </a>
-                    @endif
-                @endauth
+                    @else
+                        <a href="{{ route('login') }}" class="px-4 py-2 rounded-lg font-medium border border-orange-600 text-orange-600 hover:bg-orange-50 transition">
+                            Log Masuk
+                        </a>
+                        <a href="{{ route('register') }}" class="px-4 py-2 rounded-lg font-medium border border-orange-600 text-orange-600 hover:bg-orange-50 transition">
+                            Daftar
+                        </a>
+                    @endauth
+                @endif
             </nav>
-        @endif
+        </div>
     </header>
 
+
     <!-- Hero Section -->
-    <section class="flex flex-col items-center justify-center text-center py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-        <h1 class="text-4xl font-bold mb-4">Welcome to CheckFakta</h1>
-        <p class="text-lg mb-8 max-w-xl">Your trusted source for verifying news authenticity using AI technology.</p>
-        <a href="{{ route('news.create') }}"
-           class="bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">
-           Check News
-        </a>
+    <section class="relative bg-gray-900 text-white py-32 text-center">
+        <h1 class="text-5xl font-bold mb-4">Jangan Sebar Melulu, CheckFakta Dulu</h1>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Sahkan kebenaran berita dengan teknologi AI kami sebelum anda berkongsi.
+        </p>
+        
     </section>
 
-    <!-- Latest Verified News -->
-    <section class="py-12 px-6 flex-1">
-        <h2 class="text-2xl font-bold mb-6 text-center">Latest Verified News</h2>
-
-        @if($latestNews->count() > 0)
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                @foreach($latestNews as $news)
-                    <div class="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
-                        <img src="{{ asset('images/' . $news->image) }}" alt="{{ $news->title }}" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold mb-1">{{ $news->title }}</h3>
-                            <p class="text-gray-500 text-sm mb-2">
-                                {{ \Carbon\Carbon::parse($news->created_at)->format('M d, Y') }}
-                            </p>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">{{ Str::limit($news->body, 100) }}</p>
-                            <a href="{{ route('public.news.show', $news->id) }}" class="text-blue-600 font-semibold">Read more →</a>
-                        </div>
-                    </div>
-                @endforeach
+    <div class="grid md:grid-cols-3 gap-8">
+        <!-- Step 1 -->
+        <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/icons/upload.svg') }}" alt="Hantar Berita" class="w-16 h-16">
             </div>
-        @else
-            <p class="text-center text-gray-500">No verified news available yet.</p>
-        @endif
-    </section>
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Hantar Berita</h3>
+            <p class="text-gray-600">
+                Muat naik teks berita yang ingin disemak. Sistem menerima apa saja format teks.
+            </p>
+        </div>
 
-    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-200 dark:border-gray-700">
-        © {{ date('Y') }} CheckFakta. All rights reserved.
+        <!-- Step 2 -->
+        <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/icons/ai.svg') }}" alt="Analisis AI & ML" class="w-16 h-16">
+            </div>
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Analisis AI & ML</h3>
+            <p class="text-gray-600">
+                Sistem menilai berita menggunakan model Pembelajaran Mesin yang dilatih untuk mengenal pasti fakta sebenar dan palsu.
+            </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/icons/verify.svg') }}" alt="Terima Keputusan" class="w-16 h-16">
+            </div>
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">Terima Keputusan</h3>
+            <p class="text-gray-600">
+                Hasil penilaian dipaparkan sebagai <em>Benar</em>, <em>Palsu</em>, atau <em>Kurang Jelas</em>. Kongsi dengan yakin!
+            </p>
+        </div>
+    </div>
+
+    
+</div>
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-200">
+        © {{ date('Y') }} CheckFakta. Semua Hak Terpelihara.
     </footer>
 
 </body>

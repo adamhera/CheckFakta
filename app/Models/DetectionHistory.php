@@ -16,6 +16,7 @@ class DetectionHistory extends Model
         'user_id',
         'news_text',
         'result',
+        'svm_confidence',
         'detected_at',
     ];
 

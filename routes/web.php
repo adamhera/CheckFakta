@@ -13,6 +13,9 @@ use App\Http\Controllers\PredictController;
 // HOMEPAGE (Landing page)
 // --------------------------------------
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', function () {return view('about');})->name('about');
+Route::get('/rating', function () {return view('rating');})->name('rating');
+Route::get('/contact', function () {return view('contact');})->name('contact');
 
 // --------------------------------------
 // PUBLIC NEWS (from landing page)
