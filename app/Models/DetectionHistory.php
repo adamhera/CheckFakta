@@ -14,6 +14,7 @@ class DetectionHistory extends Model
 
     protected $fillable = [
         'user_id',
+        'user_history_id',
         'news_text',
         'result',
         'svm_confidence',
@@ -24,4 +25,13 @@ class DetectionHistory extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    protected static function booted()
+{
+    static::creating(function ($history) {
+        if (!$history->user_history_id) {
+            $history->user_history_id = DetectionHistory::where('user_id', $history->user_id)->max('user_history_id') + 1;
+        }
+    });
+}
 }

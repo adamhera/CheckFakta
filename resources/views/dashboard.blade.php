@@ -84,7 +84,39 @@
 </div>
 
     </section>
+    <br>
+    <!-- Latest News Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Berita Terkini</h2>
 
+        <div class="grid md:grid-cols-3 gap-8">
+            @foreach ($latestNews as $news)
+                @php
+                    $rawDate = trim($news['date']);
+                    $rawDate = preg_replace('/[\x00-\x1F\x7F]/u', '', $rawDate);
+
+                    try {
+                        $formattedDate = \Carbon\Carbon::createFromFormat('d/m/Y', $rawDate)->format('d M Y');
+                    } catch (\Exception $e) {
+                        $formattedDate = \Carbon\Carbon::parse($rawDate)->format('d M Y');
+                    }
+                @endphp
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-xl transition border border-gray-200">
+                    <h3 class="font-semibold text-lg mb-2 text-blue-700">{{ $news['title'] }}</h3>
+                    <p class="text-sm text-gray-500 mb-4">{{ $formattedDate }}</p>
+                    <p class="text-gray-700 text-sm mb-4">{{ \Illuminate\Support\Str::limit($news['body'], 120) }}</p>
+                    <a href="{{ $news['link'] }}" target="_blank" class="text-orange-600 hover:text-orange-700 font-medium">
+                        Baca Lanjut →
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+    <br>
     <!-- Fun / Motivational Section -->
     <section class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-6">

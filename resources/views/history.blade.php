@@ -101,7 +101,7 @@
                         <tbody class="divide-y divide-gray-200">
                             @foreach($histories as $history)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 text-sm text-gray-900">{{ $history->history_id }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-900">{{ $history->user_history_id }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-900">{{ $history->news_text }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-900">{{ $history->result }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-900">{{ $history->detected_at }}</td>
