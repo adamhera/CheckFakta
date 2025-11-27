@@ -58,6 +58,7 @@
         
     </section>
 
+    <br>
     <div class="grid md:grid-cols-3 gap-8">
         <!-- Step 1 -->
         <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
@@ -73,22 +74,22 @@
         <!-- Step 2 -->
         <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
             <div class="flex justify-center mb-4">
-                <img src="{{ asset('images/icons/ai.svg') }}" alt="Analisis AI & ML" class="w-16 h-16">
+                <img src="{{ asset('images/icons/brain-circuit.svg') }}" alt="Analisis AI & ML" class="w-16 h-16">
             </div>
             <h3 class="text-xl font-semibold text-blue-600 mb-2">Analisis AI & ML</h3>
             <p class="text-gray-600">
-                Sistem menilai berita menggunakan model Pembelajaran Mesin yang dilatih untuk mengenal pasti fakta sebenar dan palsu.
+                Sistem menilai berita menggunakan model Machine Learning yang dilatih untuk mengenal pasti fakta sebenar dan palsu.
             </p>
         </div>
 
         <!-- Step 3 -->
         <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
             <div class="flex justify-center mb-4">
-                <img src="{{ asset('images/icons/verify.svg') }}" alt="Terima Keputusan" class="w-16 h-16">
+                <img src="{{ asset('images/icons/badge-check.svg') }}" alt="Terima Keputusann" class="w-16 h-16">
             </div>
             <h3 class="text-xl font-semibold text-blue-600 mb-2">Terima Keputusan</h3>
             <p class="text-gray-600">
-                Hasil penilaian dipaparkan sebagai <em>Benar</em>, <em>Palsu</em>, atau <em>Kurang Jelas</em>. Kongsi dengan yakin!
+                Hasil penilaian dipaparkan sebagai <em>Real</em>, <em>Fake</em>, atau <em>Unclear</em>. Kongsi dengan yakin!
             </p>
         </div>
     </div>

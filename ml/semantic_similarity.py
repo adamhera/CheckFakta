@@ -4,6 +4,7 @@ import pandas as pd
 
 # Load pre-trained model
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+# model = SentenceTransformer('fine_tuned_similarity_model')
 
 # Load your fact bank dataset
 df_facts = pd.read_csv("sebenarnya_labeledLatest.csv")

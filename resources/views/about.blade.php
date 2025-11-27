@@ -32,8 +32,8 @@
     </header>
 
     <!-- About Us Content -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-6">
-        <div class="max-w-3xl text-center">
+    <section class="min-h-screen flex flex-col justify-center items-center bg-[#FDFDFC] px-6 py-16">
+        <div class="max-w-4xl text-center">
             <h2 class="text-4xl font-bold text-gray-800 mb-6">Tentang Kami</h2>
             <p class="text-lg text-gray-600 mb-12">
                 CheckFakta ditubuhkan untuk membantu masyarakat membezakan berita sebenar daripada berita palsu.
@@ -41,10 +41,10 @@
             </p>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Mission, Vision, Values Cards -->
-                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                <!-- Misi -->
+                <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
                     <div class="flex justify-center mb-4">
-                        <img src="{{ asset('images/icons/mission.svg') }}" alt="Misi" class="w-16 h-16">
+                        <img src="{{ asset('images/icons/list-check.svg') }}" alt="Misi" class="w-16 h-16">
                     </div>
                     <h3 class="text-xl font-semibold text-blue-600 mb-2">Misi Kami</h3>
                     <p class="text-gray-600">
@@ -52,9 +52,10 @@
                     </p>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                <!-- Visi -->
+                <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
                     <div class="flex justify-center mb-4">
-                        <img src="{{ asset('images/icons/vision.svg') }}" alt="Visi" class="w-16 h-16">
+                        <img src="{{ asset('images/icons/telescope.svg') }}" alt="Visi" class="w-16 h-16">
                     </div>
                     <h3 class="text-xl font-semibold text-blue-600 mb-2">Visi Kami</h3>
                     <p class="text-gray-600">
@@ -62,9 +63,10 @@
                     </p>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                <!-- Nilai -->
+                <div class="bg-blue-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:scale-105">
                     <div class="flex justify-center mb-4">
-                        <img src="{{ asset('images/icons/values.svg') }}" alt="Nilai" class="w-16 h-16">
+                        <img src="{{ asset('images/icons/message-circle-heart.svg') }}" alt="Nilai" class="w-16 h-16">
                     </div>
                     <h3 class="text-xl font-semibold text-blue-600 mb-2">Nilai Kami</h3>
                     <p class="text-gray-600">
