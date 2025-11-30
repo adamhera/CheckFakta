@@ -37,7 +37,8 @@ Route::get('/history', [NewsController::class, 'history'])->name('news.history')
 // --------------------------------------
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+// ->middleware(['auth', 'verified'])->name('dashboard');
 
 // --------------------------------------
 // PROFILE

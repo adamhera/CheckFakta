@@ -76,9 +76,9 @@
     </header>
 
     <!-- Re-send verification -->
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    {{-- <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
-    </form>
+    </form> --}}
 
     <!-- Profile Update Form -->
     <form method="post" action="{{ route('profile.update') }}" class="space-y-6">
@@ -115,7 +115,7 @@
             >
             <x-input-error class="mt-2 text-red-600" :messages="$errors->get('email')" />
 
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
+            {{-- @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div class="mt-3 bg-orange-50 p-4 rounded-lg border border-orange-200">
                     <p class="text-sm text-gray-700">
                         Emel anda belum disahkan.
@@ -132,7 +132,7 @@
                         </p>
                     @endif
                 </div>
-            @endif
+            @endif --}}
         </div>
 
         <!-- Save Button -->
