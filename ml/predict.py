@@ -157,7 +157,8 @@ TFIDF_PATH = os.path.join(BASE_DIR, "tfidf_vectorizerLatest.pkl")
 SVM_MODEL_PATH = os.path.join(BASE_DIR, "svm_modelLatest.pkl")
 LABEL_ENCODER_PATH = os.path.join(BASE_DIR, "label_encoder.pkl")
 FACT_DATA_PATH = os.path.join(BASE_DIR, "sebenarnya_with_links_new.csv")
-EMBEDDINGS_PATH = os.path.join(BASE_DIR, "fact_embeddings_pretrained.pkl")
+# EMBEDDINGS_PATH = os.path.join(BASE_DIR, "fact_embeddings_pretrained.pkl")
+EMBEDDINGS_PATH = os.path.join(BASE_DIR, "fact_embeddings_updated.pkl")
 MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 
 # === Load SVM + TFIDF ===

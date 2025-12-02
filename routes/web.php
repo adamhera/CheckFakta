@@ -11,6 +11,15 @@ use App\Http\Controllers\PredictController;
 
 
 use Illuminate\Support\Str;
+
+// Temporary test route for email
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test', function ($message) {
+        $message->to('adamhaqimi28@gmail.com')
+                ->subject('Test Email from Laravel');
+    });
+    return 'Mail sent!';
+});
 // --------------------------------------
 // HOMEPAGE (Landing page)
 // --------------------------------------

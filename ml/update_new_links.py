@@ -33,25 +33,29 @@ existing_urls = set(u for u in (normalize_url(u) for u in df_labeled['link']) if
 # -----------------------
 # Auto Date Range
 # -----------------------
-if not df_labeled.empty and 'date' in df_labeled.columns:
-    try:
-        #last_date = pd.to_datetime(df_labeled['date'], errors='coerce').max().date()
-        #start_date = last_date - timedelta(days=1)  # recheck 1 day overlap to be safe
-        dates = pd.to_datetime(df_labeled['date'], errors='coerce')
-        valid_dates = dates[~dates.isna() & (dates <= datetime.now())]
-        if not valid_dates.empty:
-                last_date = valid_dates.max().date()
-                start_date = last_date - timedelta(days=1)
-        else:
-                start_date = datetime.now().date() - timedelta(days=7)
+# if not df_labeled.empty and 'date' in df_labeled.columns:
+#     try:
+#         #last_date = pd.to_datetime(df_labeled['date'], errors='coerce').max().date()
+#         #start_date = last_date - timedelta(days=1)  # recheck 1 day overlap to be safe
+#         dates = pd.to_datetime(df_labeled['date'], errors='coerce')
+#         valid_dates = dates[~dates.isna() & (dates <= datetime.now())]
+#         if not valid_dates.empty:
+#                 last_date = valid_dates.max().date()
+#                 start_date = last_date - timedelta(days=1)
+#         else:
+#                 start_date = datetime.now().date() - timedelta(days=7)
 
-    except Exception:
-        start_date = datetime.now().date() - timedelta(days=7)
-else:
-    start_date = datetime.now().date() - timedelta(days=7)
+#     except Exception:
+#         start_date = datetime.now().date() - timedelta(days=7)
+# else:
+#     start_date = datetime.now().date() - timedelta(days=7)
 
+# end_date = datetime.now().date()
+# -----------------------
+# Always use last 7 days
+# -----------------------
+start_date = datetime.now().date() - timedelta(days=7)
 end_date = datetime.now().date()
-
 print(f"📅 Date range: {start_date} → {end_date}")
 
 # -----------------------
