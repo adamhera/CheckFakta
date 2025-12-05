@@ -75,7 +75,7 @@
         <div class="flex justify-center gap-6">
     <a href="{{ route('news.create') }}" 
        class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-lg shadow hover:bg-orange-700 transition">
-        Hantar Berita Baru
+        Semak Berita 
     </a>
     <a href="{{ route('news.history') }}" 
        class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-lg shadow hover:bg-orange-700 transition">
