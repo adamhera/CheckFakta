@@ -40,7 +40,7 @@
             </p>
 
             <a href="mailto:your-email@example.com" class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition">
-                test123@example.com
+                CheckFakta@example.com
             </a>
         </div>
     </section>

@@ -85,7 +85,7 @@
             </div>
             <h3 class="text-xl font-semibold text-blue-600 mb-2">Terima Keputusan</h3>
             <p class="text-gray-600">
-                Hasil penilaian dipaparkan sebagai <em>Real</em>, <em>Fake</em>, atau <em>Unclear</em>. Kongsi dengan yakin!
+                Hasil penilaian dipaparkan sebagai <em>Benar</em>, <em>Palsu</em>, atau <em>Tidak Jelas</em>. Kongsi dengan yakin!
             </p>
         </div>
     </div>

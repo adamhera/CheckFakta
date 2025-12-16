@@ -54,7 +54,7 @@
 
     <!-- Hero Section / Input -->
     <section class="relative bg-gray-900 text-white py-32 text-center rounded-b-3xl shadow-lg">
-    <h1 class="text-5xl sm:text-6xl font-bold mb-6">Hantar Berita Baru</h1>
+    <h1 class="text-5xl sm:text-6xl font-bold mb-6">Semak Berita</h1>
     <p class="text-xl sm:text-2xl max-w-3xl mx-auto mb-8">
         Masukkan teks berita yang ingin disahkan menggunakan sistem kami.
     </p>
