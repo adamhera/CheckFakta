@@ -38,9 +38,9 @@
         <p class="text-lg text-gray-600 mb-12">
                 Ada soalan atau cadangan? Anda boleh terus email kami di:
             </p>
-
+            <br>
             <a href="mailto:your-email@example.com" class="inline-block bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition">
-                CheckFakta@example.com
+                CheckFakta@gmail.com
             </a>
         </div>
     </section>
