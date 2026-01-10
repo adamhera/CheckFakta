@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+// extends Authenticatable rather than MODEL, so it allows Laravel auth features to work 
 // class User extends Authenticatable implements MustVerifyEmail
 class User extends Authenticatable 
 {
@@ -26,7 +27,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that should be hidden for serialization.
-     *
+     *  $hidden prevents sensitive fields from being exposed in API responses.
      * @var list<string>
      */
     protected $hidden = [
@@ -36,7 +37,7 @@ class User extends Authenticatable
 
     /**
      * Get the attributes that should be cast.
-     *
+     * 
      * @return array<string, string>
      */
     protected function casts(): array

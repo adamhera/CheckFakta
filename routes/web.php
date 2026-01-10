@@ -2,17 +2,17 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicNewsController;
-
 use App\Http\Controllers\PredictController;
-
 
 use Illuminate\Support\Str;
 
-// Temporary test route for email
+/**
+ * DEBUGGING & UTILITY ROUTES
+ * Used for testing server-side configurations like SMTP mail.
+ */
 Route::get('/test-mail', function () {
     Mail::raw('This is a test', function ($message) {
         $message->to('adamhaqimi28@gmail.com')
@@ -34,7 +34,7 @@ Route::get('/contact', function () {return view('contact');})->name('contact');
 Route::get('/verified-news/{id}', [PublicNewsController::class, 'show'])->name('public.news.show');
 
 // --------------------------------------
-// FAKE NEWS DETECTION (logged-in users)
+// FAKE NEWS DETECTION (logged-in users) 
 // --------------------------------------
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::post('/news', [NewsController::class, 'store'])->name('news.store');
@@ -42,7 +42,7 @@ Route::get('/news/result/{id}', [NewsController::class, 'show'])->name('news.sho
 Route::get('/history', [NewsController::class, 'history'])->name('news.history');
 
 // --------------------------------------
-// DASHBOARD
+// DASHBOARD: Displays user-specific metrics and latest news
 // --------------------------------------
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -50,7 +50,7 @@ Route::get('/dashboard', function () {
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
 // --------------------------------------
-// PROFILE
+// USER PROFILE: Standard CRUD for account management
 // --------------------------------------
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -113,7 +113,7 @@ Route::get('/', function () {
     //     return strtotime($b['date']) - strtotime($a['date']);
     // });
 
-    // ✅ Place the date sorting here
+    //  Place the date sorting here
     usort($newsList, function ($a, $b) {
     $dateA = DateTime::createFromFormat('d/m/Y', $a['date']) ?: strtotime($a['date']);
     $dateB = DateTime::createFromFormat('d/m/Y', $b['date']) ?: strtotime($b['date']);
@@ -133,20 +133,28 @@ Route::get('/', function () {
 // --------------------------------------
 // Latest News Route for Dashboard
 // --------------------------------------
+/**
+ * DYNAMIC CSV DATA PARSING
+ * Logic: Reads 'sebenarnya_labeledLatest.csv' to display live news feeds.
+ * Features: Auto-delimiter detection, BOM removal, and custom date sorting.
+ */
 Route::get('/dashboard', function () {
     $csvPath = base_path('ml/sebenarnya_labeledLatest.csv');
     $newsList = [];
 
     if (file_exists($csvPath) && ($handle = fopen($csvPath, 'r')) !== false) {
+        // Step 1: Detect Delimiter (supports comma, semicolon, or tab)
         $firstLine = fgets($handle);
         if ($firstLine !== false) {
             $delimiter = strpos($firstLine, "\t") !== false ? "\t" : (strpos($firstLine, ";") !== false ? ";" : ",");
             rewind($handle);
 
+            // Step 2: Handle Headers and remove UTF-8 BOM if present
             $headers = fgetcsv($handle, 0, $delimiter);
             $headers = array_map('trim', $headers);
             $headers[0] = preg_replace('/^\x{FEFF}/u', '', $headers[0]);
 
+            // Step 3: Map rows to associative array
             while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
                 if (count($row) != count($headers)) continue;
                 $newsList[] = array_combine($headers, $row);
