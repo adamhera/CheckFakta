@@ -68,7 +68,7 @@
                 <div class="flex justify-center mb-3">
                     <img src="{{ asset('images/icons/unclear.svg') }}" alt="Unclear" class="w-14 h-14">
                 </div>
-                <h3 class="text-lg font-semibold text-yellow-600 mb-2">Kurang Jelas</h3>
+                <h3 class="text-lg font-semibold text-yellow-600 mb-2">Tidak Jelas</h3>
                 <p class="text-gray-600 text-sm">
                     Berita ini tidak cukup maklumat untuk disahkan. Sila semak sumber lain sebelum berkongsi.
                 </p>
@@ -84,7 +84,7 @@
     <p class="text-gray-600 mb-10 max-w-3xl mx-auto">
         Berikut ialah matriks kekeliruan (Confusion Matrix) bagi model pengesanan berita palsu kami.
         Ia menunjukkan ketepatan ramalan bagi kategori <span class="font-semibold">Benar</span>,
-        <span class="font-semibold">Palsu</span>, dan <span class="font-semibold">Kurang Jelas</span>.
+        <span class="font-semibold">Palsu</span>, dan <span class="font-semibold">Tidak Jelas</span>.
     </p>
 
     <!-- Confusion Matrix Table -->
@@ -95,27 +95,28 @@
                     <th class="border px-6 py-3"></th>
                     <th class="border px-6 py-3 font-semibold">Diramal: Palsu</th>
                     <th class="border px-6 py-3 font-semibold">Diramal: Benar</th>
-                    <th class="border px-6 py-3 font-semibold">Diramal: Kurang Jelas</th>
+                    <th class="border px-6 py-3 font-semibold">Diramal: Tidak Jelas</th>
                 </tr>
             </thead>
             <tbody class="text-gray-700">
                 <tr>
                     <td class="border px-6 py-3 font-semibold bg-gray-100">Sebenar: Palsu</td>
-                    <td class="border px-6 py-3 bg-green-100 font-bold">46</td>
-                    <td class="border px-6 py-3 bg-red-100">1</td>
-                    <td class="border px-6 py-3 bg-yellow-50">0</td>
+                    <td class="border px-6 py-3 bg-green-100 font-bold">44</td> <!-- TP -->
+                    <td class="border px-6 py-3 bg-red-100">0</td> <!-- FP misclassified as Real -->
+                    <td class="border px-6 py-3 bg-yellow-50">2</td> <!-- FN misclassified as Unclear -->
                 </tr>
                 <tr>
                     <td class="border px-6 py-3 font-semibold bg-gray-100">Sebenar: Benar</td>
-                    <td class="border px-6 py-3 bg-red-100">1</td>
-                    <td class="border px-6 py-3 bg-green-100 font-bold">51</td>
-                    <td class="border px-6 py-3 bg-yellow-50">0</td>
+                    <td class="border px-6 py-3 bg-red-100">1</td> <!-- FP misclassified as Fake -->
+                    <td class="border px-6 py-3 bg-green-100 font-bold">51</td> <!-- TP -->
+                    <td class="border px-6 py-3 bg-yellow-50">5</td> <!-- FN misclassified as Unclear -->
                 </tr>
                 <tr>
-                    <td class="border px-6 py-3 font-semibold bg-gray-100">Sebenar: Kurang Jelas</td>
-                    <td class="border px-6 py-3 bg-yellow-50">0</td>
-                    <td class="border px-6 py-3 bg-red-100">3</td>
-                    <td class="border px-6 py-3 bg-green-100 font-bold">95</td>
+                    <td class="border px-6 py-3 font-semibold bg-gray-100">Sebenar: Tidak Jelas</td>
+                    <td class="border px-6 py-3 bg-yellow-50">0</td> <!-- misclassified as Fake -->
+                    <td class="border px-6 py-3 bg-red-100">4</td> <!-- misclassified as Real -->
+                    <td class="border px-6 py-3 bg-green-100 font-bold">98</td> <!-- TP -->
+
                 </tr>
             </tbody>
         </table>
