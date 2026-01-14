@@ -79,7 +79,7 @@
     </a>
     <a href="{{ route('news.history') }}" 
        class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-lg shadow hover:bg-orange-700 transition">
-        Lihat Sejarah
+        Lihat Semakan Terdahulu
     </a>
 </div>
 
