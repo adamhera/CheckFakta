@@ -64,21 +64,21 @@
     <!-- Form Input -->
     <div class="flex-grow py-12">
         <div class="max-w-3xl mx-auto px-6 bg-white rounded-xl shadow p-8 mt-8">
-            <form action="{{ route('news.store') }}" method="POST">
+            <form id="newsForm" action="{{ route('news.store') }}" method="POST">
                 @csrf
                 <label for="news_text" class="block text-gray-700 font-medium mb-2">Teks Berita</label>
                 <textarea id="news_text" name="news_text" rows="6" 
                           class="w-full border border-gray-300 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-orange-500" 
                           placeholder="Masukkan berita di sini..."></textarea>
 
-                <button type="submit" 
+                <button id="submitBtn" type="submit"
                         class="mt-6 px-6 py-3 bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 transition text-lg font-semibold">
                     Hantar
                 </button>
 
                 <a href="{{ route('news.history') }}" 
                    class="px-6 py-3 bg-orange-100 text-orange-600 rounded-lg shadow hover:bg-orange-200 transition text-lg font-semibold text-center">
-                    Lihat Sejarah
+                    Lihat Semakan Terdahulu
                 </a>
             </form>
         </div>
@@ -96,5 +96,59 @@
         });
     </script>
 
+    <!-- Loading Overlay -->
+<div id="loadingOverlay"
+     class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white w-96 p-6 rounded-xl shadow-lg text-center space-y-4">
+        <p id="loadingText" class="text-lg font-semibold text-gray-700">
+            Menganalisis berita…
+        </p>
+
+        <!-- Progress bar -->
+        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div id="progressBar"
+                 class="bg-orange-600 h-3 w-0 transition-all duration-500"></div>
+        </div>
+
+        <p class="text-sm text-gray-500">
+            Proses ini mengambil sekitar 10–20 saat
+        </p>
+    </div>
+</div>
+
+    <script>
+    const form = document.getElementById('newsForm');
+    const overlay = document.getElementById('loadingOverlay');
+    const bar = document.getElementById('progressBar');
+    const text = document.getElementById('loadingText');
+    const btn = document.getElementById('submitBtn');
+
+    let progress = 0;
+    let interval;
+
+    form.addEventListener('submit', function () {
+        overlay.classList.remove('hidden');
+        btn.disabled = true;
+        btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+        progress = 0;
+        bar.style.width = '0%';
+
+        interval = setInterval(() => {
+            if (progress < 90) {
+                progress += 3;
+                bar.style.width = progress + '%';
+
+                if (progress > 30) text.innerText = 'Menilai kandungan berita…';
+                if (progress > 60) text.innerText = 'Mengesahkan keputusan model…';
+            }
+        }, 500);
+    });
+
+    // When page unloads (Laravel redirects), stop interval
+    window.addEventListener('beforeunload', () => {
+        clearInterval(interval);
+    });
+</script>
 </body>
 </html>
