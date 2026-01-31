@@ -38,7 +38,9 @@ class PredictController extends Controller
     $ch = curl_init();
 
     // Configuration for a POST request with JSON payload
-    curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/predict");
+            //dulu port dia 8000 instead of 8001
+
+    curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8001/predict");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(['text' => $inputText]));

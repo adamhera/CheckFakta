@@ -59,6 +59,11 @@ real_keywords = ["makluman","menurut kenyataan","sahih","waspada","berjaga-jaga"
 # === FastAPI setup ===
 app = FastAPI()
 
+# === NI TEST JE ===
+@app.get("/")
+def health_check():
+    return {"status": "FastAPI is running!"}
+
 class TextInput(BaseModel):
     text: str
 
@@ -116,8 +121,11 @@ def semantic_search(input_text, top_k=3, predicted_label=None):
     return results
 
 # === FastAPI route ===
+# import time
 @app.post("/predict")
 def predict(input: TextInput):
+    # --- ADD THIS LINE TO TEST THE 500 PAGE ---
+    # time.sleep(70)
     pred_label, confidence = hybrid_predict(input.text)
     similar_facts = semantic_search(input.text, top_k=3, predicted_label=pred_label)
     output = {

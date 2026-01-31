@@ -70,7 +70,7 @@
 
     <!-- Hero Section / History -->
     <section class="relative bg-gray-900 text-white py-32 text-center rounded-b-3xl shadow-lg">
-        <h1 class="text-5xl sm:text-6xl font-bold mb-6">Sejarah Deteksi Anda</h1>
+        <h1 class="text-5xl sm:text-6xl font-bold mb-6">Semakan Terdahulu Deteksi Anda</h1>
         <p class="text-xl sm:text-2xl max-w-3xl mx-auto mb-8">
             Semak semua berita yang telah anda hantar untuk pengesahan.
         </p>
